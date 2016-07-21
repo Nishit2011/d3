@@ -1,0 +1,81 @@
+<html>
+<head>
+<title>D3 Example</title>
+<script src="js/d3.js" charset="utf-8"></script>
+</head>
+<body>
+	<h1>Welcome</h1>
+	<p>This is a paragraph</p>
+	<ul id="items">
+		<li class="item">This is an item</li>
+		<li class="item">This is an item</li>
+		<li class="item">This is an item</li>
+		<li class="item">This is an item</li>	
+	</ul>
+	<script>
+		/*d3.selectAll('li:nth-child(3n)')
+			.append('div')
+			.html('<strong>---SELECTED----</strong>')
+			.style('color','red');
+*/
+
+			/*d3.selectAll('#items')
+			  .insert('li',':nth-child(3n)') //will add this new element li in the 3rd position
+			  .classed('item',true) //will add class to the newly created element
+			  .html('This is a NEW Item');*/
+
+			  //to remove element
+
+			  /*d3.select('.item:nth-child(3n)').remove();*/
+
+			  
+			  // this will replace the first seven data items wi
+			/*  var numbers =[1,2,3,4,5,6,7];
+
+			  d3.selectAll('.item')
+			     .data(numbers)
+			     .text(function(d){
+			     	return d;
+			     })
+*/
+
+			//this will change the font-size for every list-item
+			/*var numbers =[10,20,30,40,50,60,70];
+ 			d3.selectAll('.item')
+			     .data(numbers)
+			     .style('font-size',function(d){
+			     	return d + 'px';
+			     })*/
+
+			     //this will append numbers and create new list items
+			    /* var numbers =[10,20,30,40,50,60,70];
+			     d3.select('body').selectAll('li')
+			     	.data(numbers)
+			     	.enter().append('li')
+			     	.text(function(d){
+			     		return 'I am number' +d;
+			     	})*/
+
+			     	 var numbers =[10,20,30,40,50,60,70];
+			     var li= d3.select('body').selectAll('li')
+			     	.data(numbers)
+			     	.enter().append('li')
+			     	.text(function(d){
+			     		return 'I am noob' +d;
+			     	})
+
+			     	li.enter().append('li')
+			     	 .text(function(d){
+			     	 	return 'I am roob' +d;
+			     	 });
+
+			     	 li.exit().remove();
+
+
+
+
+
+	</script>
+</body>
+
+</html>

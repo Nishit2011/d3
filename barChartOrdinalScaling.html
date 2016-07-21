@@ -1,0 +1,90 @@
+<html>
+<head>
+	<title>Bar Chart - Linear Scaling</title>
+	<script src="js/d3.js" charset="utf-8"></script>
+</head>
+<body>
+	<div id="chart"></div>
+	
+
+	<script>
+
+	/*var chartData = [150, 300, 230, 500, 440, 120, 310,1600,200,190,1900];*/
+
+	//creating a loop to generate a number of random values
+	var chartData= [];
+	dataCount =40;
+	dataMax = 500;
+
+	for(var i=0;i<dataCount;i++){
+		chartData.push(Math.random() * dataMax)
+	}
+
+	//width of the chart
+	var width = 500;
+
+	//height of the chart
+	var height = 500
+
+	//width of each bar
+	var barWidth = 40;
+
+	//distance b/w each bar
+	var barOffset =5;
+
+	//Set Y Scale
+	//now no matter what charData we have, scaling will make even higher data points to scale in accordance with the bar height which is only 500
+
+	//here we are setting the the max data point dynamically
+	var y = d3.scale.linear()
+	      .domain([0,d3.max(chartData)])
+	      .range([0,height])
+
+
+	      //Set X Scale
+	      //this will scale for the horizontal chart area. suppose no. of data points make it more than the width of bar chart 
+	       var x = d3.scale.ordinal()
+	       			 .domain(d3.range(0, chartData.length))
+	       			 .rangeBands([0, width])
+
+
+	       //Set Color Scale
+
+	       var colors = d3.scale.linear()
+	      .domain([0,(chartData.length)])
+	      .range(['#6ba6d8','#1e405d'])
+	       
+
+
+	var chart = d3.select("#chart")
+					.append('svg')
+					.attr('width',width)
+					.attr('height',height)
+					.style('background','#f9f9f9')
+					.selectAll('rect')
+					.data(chartData)
+					.enter().append('rect')
+					   .style('fill',function(d,i){
+					   		return colors(i);
+
+					   })
+					   .attr('width',x.rangeBand())
+					   .attr('height',function(d){
+					   		return y(d);
+					   })
+
+					   .attr('x',function(d,i){
+					   	
+					   	return x(i);
+
+					   })
+
+					   .attr('y', function(d){
+					   	  return height - y(d);
+					   })
+
+
+		
+	</script>
+</body>
+</html>

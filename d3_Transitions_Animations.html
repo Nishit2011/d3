@@ -1,0 +1,49 @@
+<html>
+<head>
+	<title>Bar Chart - Linear Scaling</title>
+	<script src="js/d3.js" charset="utf-8"></script>
+</head>
+<body>
+	<div id="shape"></div>
+	
+
+	<script>
+	var shape = d3.select('#shape')
+				  .append('svg')
+				  .attr('width',500)
+				  .attr('height',500)
+				  .style('background','#f4f4f4');
+
+
+				  repeat();
+				 function repeat(){
+
+				 	shape.append('rect')
+				       .attr('x',0)
+				       .attr('y',0)
+				       .attr('width',200)
+				       .attr('height',200)
+				       .style('fill','red')
+				       .transition().duration(1000).ease('elastic')
+				       .attr('x',300)
+				       .style('fill','blue')
+				       .transition()
+				       .attr('y',300)
+				       .style('fill','green')
+				       .transition()
+				       .attr('x',0)
+				       .style('fill','yellow')
+				       .transition()
+				       .attr('y',0)
+				       .style('fill','red')
+				       .remove()
+				       .each('end',repeat);
+
+				 }
+				  
+
+
+		
+	</script>
+</body>
+</html>
